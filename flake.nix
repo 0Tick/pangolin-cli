@@ -32,6 +32,11 @@
         default = self.nixosModules.pangolin-cli;
       };
 
+      homeManagerModules = {
+        pangolin-cli = import ./modules/home-manager.nix;
+        default = self.homeManagerModules.pangolin-cli;
+      };
+
       overlays.default = final: prev: {
         pangolin-cli = final.callPackage ./pkgs/pangolin-cli.nix { };
       };
