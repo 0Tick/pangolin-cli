@@ -6,16 +6,16 @@
 
 buildGoModule rec {
   pname = "pangolin-cli";
-  version = "0.3.3";
+  version = "0.5.3";
 
   src = fetchFromGitHub {
     owner = "fosrl";
     repo = "cli";
     rev = version;
-    hash = "sha256-VOb/rmfeJ51MaI37v9+wEDuSmPQyOuKqfGKxY7gtl1c=";
+    hash = "sha256-ZgdYc7DbNdxwNxPswSRgmuZ4czqL+IfZAjo4XH2Df2I=";
   };
 
-  vendorHash = "sha256-hZj/PDNsWGplSrOgzJtL09/oFXHZ4zdS7BiRS+oy5bw=";
+  vendorHash = "sha256-eBrglhyqKy6pG9eF0yfJdCOLxeWys4atKAp9Jgtzdj8=";
 
   subPackages = [ "." ];
 
@@ -23,6 +23,11 @@ buildGoModule rec {
     "-s"
     "-w"
   ];
+
+  postFixup = ''
+    ls $out/bin
+    mv $out/bin/cli $out/bin/pangolin
+  '';
 
   meta = with lib; {
     description = "Pangolin CLI tool and VPN client";
